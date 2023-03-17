@@ -1,21 +1,40 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy
+from sqlalchemy import text
 from flask_migrate import Migrate
 from flask_login import LoginManager
 import logging
 from logging.handlers import SMTPHandler
 from logging.handlers import RotatingFileHandler
-import os 
+import os
+
+# print(os.getcwd())
+# sys.path.append(os.path.abspath(os.getcwd()))
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
+
+bootstrap = Bootstrap(app)
+
+with app.app_context():
+    engine = sqlalchemy.create_engine(Config().SQLALCHEMY_DATABASE_URI)  # connect to server
+
+    with engine.connect() as conn:
+        create_str = text("CREATE DATABASE IF NOT EXISTS %s ;" % ('flaskDB'))
+        conn.execute((create_str))
+        conn.execute(text("USE flaskDB;"))
+    db = SQLAlchemy(app)
+    db.create_all()
+    db.session.commit()
+
 migrate = Migrate(app,db)
 login = LoginManager(app)
 login.login_view = 'login'
 
-from app import routes,models,errors
+from app import routes,models,errors,torch_utils,mnist_fcn
 
 if not app.debug:
     if app.config['MAIL_SERVER']:

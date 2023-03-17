@@ -1,7 +1,8 @@
 FLASK_APP=microblog.py
 FLASK_ENV=production
+FLASK_DEBUG=1
 MAIL_SERVER=smtp.googlemail.com
 MAIL_PORT=587
 MAIL_USE_TLS=1
 MAIL_USERNAME=jiviteshsabharwal@gmail.com  
-MAIL_PASSWORD=Sabharwal1604
+DATABASE_URL = mysql://root:password@localhost:3306/flaskDB

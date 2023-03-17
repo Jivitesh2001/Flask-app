@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError, Email,EqualTo, Length
+from flask_wtf.file import FileAllowed
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -25,6 +26,10 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email = email.data).first()
         if user is not None:
             raise ValidationError('Please use different email address.')
+        
+class ImageUploadForm(FlaskForm):
+    image = FileField('Image of a Handwritten digit',validators=[FileAllowed(['jpg','png','jpeg'])])
+    submit = SubmitField('Predict')
 
 
 class EditProfileForm(FlaskForm):
