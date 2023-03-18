@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>MNIST Nueral Network</h1>
-    <p>Predicted result for given image is <strong> {{data['prediction']}}</strong> </p>
-    <p>Do you want to predict more?</p>
-    <button><a href="{{url_for('predict')}}"\>Predict Again</button>
-   
-    </form>
+    <div class="container ">
+        <div class="row">
+            <h1>MNIST Nueral Network</h1>
+        </div>
+        <div class="row">
+            <p>Predicted result for given image is <strong> {{data['prediction']}}</strong> </p>
+        </div>
+        <div class="row">
+            <p>Do you want to predict more?</p>
+        </div>
+        <div class="row">
+            <button class="button"><a href="{{url_for('predict')}}"\>Predict Again</button>
+        </div> 
+    </div>
 {% endblock %}

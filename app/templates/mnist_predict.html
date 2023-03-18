@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>MNIST Nueral Network</div>
-    <p> <b>Please upload an image(format should be .png, .jpeg, .jpg)</b> </p>
+    <div class="container">
+    <div class="row"><h1>MNIST Nueral Network</h1></div>
+    <div class=row><p> <b>Please upload an image(format should be .png, .jpeg, .jpg)</b> </p></div>
+    <div class="row">
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <p>
@@ -13,5 +15,6 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-    </form>
+    </form></div>
+    </div>
 {% endblock %}
