@@ -108,6 +108,7 @@ def predict():
         return render_template('mnist_predict.html',title= 'MNIST',form =form)
     if request.method == 'POST':
         file = request.files.get('file') or form.image.data
+        print(type(file))
         if file is None or file.filename =='':
             flash('Please upload a file')
             return redirect(url_for('predict'))
