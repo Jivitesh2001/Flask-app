@@ -5,4 +5,4 @@ MAIL_SERVER=smtp.googlemail.com
 MAIL_PORT=587
 MAIL_USE_TLS=1
 MAIL_USERNAME=jiviteshsabharwal@gmail.com  
-DATABASE_URL = mysql://root:password@localhost:3306/flaskDB
+DATABASE_URL=mysql://myUser:myPassword@localhost:3306/myDB

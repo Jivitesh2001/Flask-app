@@ -19,16 +19,16 @@ app.config.from_object(Config)
 
 bootstrap = Bootstrap(app)
 
-with app.app_context():
-    engine = sqlalchemy.create_engine(Config().SQLALCHEMY_DATABASE_URI)  # connect to server
+# with app.app_context():
+    # engine = sqlalchemy.create_engine(Config().SQLALCHEMY_DATABASE_URI)  # connect to server
 
-    with engine.connect() as conn:
-        create_str = text("CREATE DATABASE IF NOT EXISTS %s ;" % ('flaskDB'))
-        conn.execute((create_str))
-        conn.execute(text("USE flaskDB;"))
-    db = SQLAlchemy(app)
-    db.create_all()
-    db.session.commit()
+    # with engine.connect() as conn:
+    #     create_str = text("CREATE DATABASE IF NOT EXISTS %s ;" % ('flaskDB'))
+    #     conn.execute((create_str))
+    #     conn.execute(text("USE flaskDB;"))
+db = SQLAlchemy(app)
+    # db.create_all()
+    # db.session.commit()
 
 migrate = Migrate(app,db)
 login = LoginManager(app)
